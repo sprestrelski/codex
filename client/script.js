@@ -8,7 +8,7 @@ let loadInterval
 
 function loader(element){
   element.textContent = ''
-  // ... loading
+  // cycle through 3 dots while content loads
   loadInterval = setInterval(() => {
     element.textContent += '.';
 
@@ -32,6 +32,8 @@ function typeText(element, text) {
   }, 20)
 }
 
+// generate an ID for each message div of the bot
+// used for typing text effect
 function generateUniqueId() {
   const timestamp = Date.now();
   const randomNumber = Math.random();
@@ -68,6 +70,8 @@ const handleSubmit = async(e) => {
 
   // user's chatstripe
   chatContainer.innerHTML += chatStripe(false, data.get('prompt'))
+
+  // clear text area
   form.reset()
 
   // bot's chatstripe
@@ -109,6 +113,7 @@ const handleSubmit = async(e) => {
 
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', function(e) {
+  // allows user to press enter instead of click
   if (e.keyCode === 13) {
     handleSubmit(e);
   }
